@@ -269,8 +269,16 @@ def mult_numbers(number_list):
         1
 
     """
+    total = 1 # set initial conditions to 1 because if set to 0, total will be always 0.
 
-    return None
+    for item in number_list:
+        try: # check if all items in the list are numbers. 
+            item = float(item) #tycast all numbers to float in case there is an int or str.
+            total = total * item # means: total = the previous total multiply by the next item on the list. 
+        except ValueError:
+            print "Oops! %s is not a number..." %item
+
+    return total
 
 
 def join_strings(word_list):
@@ -289,7 +297,11 @@ def join_strings(word_list):
 
     """
 
-    return "Not the right thing"
+    joined_string_results = "" # initials conditions: empty str.
+    for string in word_list:
+        string = str(string) # type cast string in word_list to a str. 
+        joined_string_results = joined_string_results + string #means: joined_string_results = concatinate previous joined_string_results with the next string. 
+    return joined_string_results
 
 
 def average(number_list):
@@ -302,7 +314,15 @@ def average(number_list):
     this raises an error when given an empty list.
     """
 
-    return 0
+    total = 0 #set initial conditions starting from 0
+    for number in number_list:
+        try: #check that all items in the list are numbers
+            number = float(number) #type cast the number into a float
+            total += number #means: total = previous total + the next number int he list. 
+            average = total/ len(number_list) # the built-in fn. len() counts the total number of items in a list. 
+        except ValueError:
+            print "Oops! %s number is not a number..." %number
+    return average
 
 
 def join_strings_with_comma(list_of_words):
@@ -318,8 +338,17 @@ def join_strings_with_comma(list_of_words):
         'Pretzel'
 
     """
+    joined_string_results = ""
 
-    return ""
+    for string in list_of_words:
+        string = str(string)
+        if len(list_of_words) == 1: #if there is only one item in the list return only the that item. 
+            joined_string_results = string
+        else:
+            joined_string_results = joined_string_results + string + ", "
+
+
+    return joined_string_results[:-2] # A whole set of string is returned ei. "hello, bacon, cake, case, " To get rid of the extra "," and " " at the end of the string. It has been asked to return from the beginning of the string until [-3]. NOTE: [-2]is not included, it is where it stops returning. 
 
 
 def foods_in_common(foods1, foods2):
