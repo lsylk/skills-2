@@ -164,9 +164,9 @@ def smallest_int(number_list):
         True
 
     """
-    for item in number_list:
-        if item < item:
-    return item
+    # for item in number_list:
+    #     if item < item:
+    # return item
 
 
 def largest_int(number_list):
@@ -202,8 +202,15 @@ def halvesies(number_list):
         [0.5, 2.5]
 
     """
-
-    return []
+    halvesies_list = []
+    #Create an empty list
+    for item in number_list:
+        item = float(item)
+        #type cast all items into a float
+        halvesies = item/2
+        # divide each item by 2, them append it to the halvesies_list empty list.
+        halvesies_list.append(halvesies)
+    return halvesies_list
 
 
 def word_lengths(word_list):
@@ -213,8 +220,12 @@ def word_lengths(word_list):
         [5, 3, 5, 4]
 
     """
-
-    return []
+    word_lengths_list = [] #Create an empty list
+    for item in word_list:
+        item = str(item) #type cast each item on the list into a str
+        item_length = len(item) #find the length of each str (len() built-in fn only works with str)
+        word_lengths_list.append(item_length) # add each length value to the empty list.
+    return word_lengths_list
 
 
 def sum_numbers(number_list):
@@ -232,8 +243,12 @@ def sum_numbers(number_list):
         0
 
     """
+    total = 0 #set the initial conditions, so total is 0
+    for item in number_list:
+        item = float(item) #tycast all numbers to float in case there is an int or str.
+        total += item # this means total = total + item
 
-    return None
+    return total
 
 
 def mult_numbers(number_list):
