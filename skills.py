@@ -164,9 +164,14 @@ def smallest_int(number_list):
         True
 
     """
-    # for item in number_list:
-    #     if item < item:
-    # return item
+    x = 100000000000 #set initial condition to a huge number, so we can compare
+    for number in number_list: #Issue:  it is not taking into account if the list is empty... 
+        number = float(number)
+        if number < x:
+            x = number
+
+    return x
+
 
 
 def largest_int(number_list):
@@ -187,7 +192,18 @@ def largest_int(number_list):
 
     """
 
-    return 0
+#Note same problem as largest_int function. 
+    x = -100000000000
+    for number in number_list:
+        number = float(number)
+        if len(number_list) == 0:
+            x = None
+        elif len(number_list) > 0:
+            number > x
+            x = number
+
+    return x
+
 
 
 def halvesies(number_list):
@@ -245,7 +261,7 @@ def sum_numbers(number_list):
     """
     total = 0 #set the initial conditions, so total is 0
     for item in number_list:
-        item = float(item) #tycast all numbers to float in case there is an int or str.
+        item = int(item) #tycast all numbers to float in case there is an int or str.
         total += item # this means total = total + item
 
     return total
@@ -343,7 +359,7 @@ def join_strings_with_comma(list_of_words):
     for string in list_of_words:
         string = str(string)
         if len(list_of_words) == 1: #if there is only one item in the list return only the that item. 
-            joined_string_results = string
+            joined_string_results = string + ", "
         else:
             joined_string_results = joined_string_results + string + ", "
 
@@ -352,10 +368,10 @@ def join_strings_with_comma(list_of_words):
 
 
 def foods_in_common(foods1, foods2):
-    """Using ANY Python data structure presented in the last week, given 2 lists of foods, 
+    """Using ANY Python data structure presented in the last week, given 2 lists of foods,
     return a set of items that are in common between the two. (Don't include any duplicates
     in the output collection.)
-    
+
     For example:
 
     >>> foods_in_common(["cheese", "bagel", "cake"], ["hummus", "beets", "bagel", "lentils"])
@@ -367,8 +383,16 @@ def foods_in_common(foods1, foods2):
     set([])
 
     """
+    # for every food that is in the foods1list, check if that food item is in the food2 list. 
+    common_list = []
+    for food in foods1:
+        if food == food in foods2: 
+            common_list.append(food)
 
-    return set(['the wrong thing'])
+    return common_list
+
+
+
 
 
 def reverse_list(my_list):
@@ -383,8 +407,8 @@ def reverse_list(my_list):
         ['I', 'love', 'cookies']
 
     """
-
-    return []
+    list_reversed = my_list[::-1]
+    return list_reversed
 
 
 def reverse_list_in_place(my_list):
@@ -394,16 +418,16 @@ def reverse_list_in_place(my_list):
 
        Do not use the python methed reverse()/reversed()
 
-        >>> reverse_list([1, 2, 3])
+        >>> reverse_list_in_place([1, 2, 3])
         [3, 2, 1]
 
-        >>> reverse_list(["cookies", "love", "I"])
+        >>> reverse_list_in_place(["cookies", "love", "I"])
         ['I', 'love', 'cookies']
 
 
     """
-
-    return []
+    unreverse_list = my_list[::-1]
+    return unreverse_list
 
 
 def duplicates(my_list):
@@ -418,8 +442,12 @@ def duplicates(my_list):
 
 
     """
+    duplicate_list = []
+    for item in my_list:
+        if item == item:
+            duplicate_list.append(item)
 
-    return []
+    return duplicate_list
 
 
 def find_letter_indices(list_of_words, letter):
@@ -439,7 +467,15 @@ def find_letter_indices(list_of_words, letter):
 
     """
 
-    return []
+    #How to find out the index location of a letter in a string?
+    index_list =[]
+    for item in list_of_words:
+        if letter in item:
+            letter_index = letter[]
+            index_list,append(letter_index)
+    return index_list
+
+
 
 def largest_n_items(input_list, n):
     """Given a list of integers along with an integer n, return a 
@@ -454,7 +490,12 @@ def largest_n_items(input_list, n):
 
     """
 
-    return []
+    largest_numbers = []
+    x = int(n+1)
+    input_list.sort()
+    largest_numbers.extend(input_list[-1:-x])
+
+    return largest_numbers
 
 
 ##############################################################################
