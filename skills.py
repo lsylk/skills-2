@@ -15,11 +15,12 @@ def print_list(my_list):
         9
 
     """
-# As the loop goes through each item in the list, 
-# it will print that specific item. 
-    for item in my_list: 
-        print item
+# As the loop goes through each item in the list,
+# it will print that specific item.
+# Run time is o(n) linear
+    for item in my_list:
 
+        print item
 
 
 def all_odd(number_list):
@@ -31,18 +32,19 @@ def all_odd(number_list):
         >>> all_odd([2, -6, 8])
         []
 
-    """ 
+    """
 
-    new_list = [] #Create an empty list 
+    new_list = []  # Create an empty list
+
     # assume all items in the list are numbers
     # to avoid the numbers that are strings
-    for item in number_list: #ctypecast all the items in the list into an int. 
+    for item in number_list:  # ctypecast all the items in the list into an int.
         item = int(item)
-        
-        if item%2 != 0: # if the remainder of the item/2 is NOT 0, then append it to the new list. 
-            new_list.append(item)
-    return  new_list
 
+        if item % 2 != 0:  # if the remainder of the item/2 is NOT 0, then append it to the new list.
+            new_list.append(item)
+
+    return new_list
 
 
 def all_even(number_list):
@@ -55,14 +57,14 @@ def all_even(number_list):
         []
 
     """
-   
-    new_list = [] #Create an empty list
+
+    new_list = []  # Create an empty list
     # assume all items in the list are numbers
     # to avoid the numbers that are strings
-    for item in number_list: #typecast all the items in the list into an int. 
+    for item in number_list:  # typecast all the items in the list into an int.
         item = int(item)
 
-        if item%2 == 0:# if the remainder of the item/2 IS 0, then append it to the new list. 
+        if item % 2 == 0:  # if the remainder of the item/2 IS 0, then append it to the new list.
                 new_list.append(item)
     return new_list
 
@@ -78,9 +80,9 @@ def every_other_item(my_list):
        ['you', 'are', 'good', 'at', 'coding']
 
     """
-
     return my_list[0::2]
-    # [starts:stop:steps]. It will return every other starting from [0], which is the very beginning, then until the very end (empty between colons). 
+    # [starts:stop:steps]. It will return every other starting from [0], which is the very beginning, then until the very end (empty between colons).
+
 
 def print_indexes(my_list):
     """Print the index of each item in the input_list, followed by the item itself.
@@ -107,7 +109,6 @@ def print_indexes(my_list):
         print index_item
 
 
-
 def long_words(word_list):
     """Return all words in input list that are longer than 4 characters.
 
@@ -126,7 +127,6 @@ def long_words(word_list):
     return long_words_list
 
 
-
 def n_long_words(word_list, n):
     """Return all words in input list that are longer than n characters.
 
@@ -142,6 +142,7 @@ def n_long_words(word_list, n):
         if len(item) > n:
         #len method will count the number of characters that the item has. If it is greater than n, that item will be appended to the n_long_word_list.
             n_long_words_list.append(item)
+
     return n_long_words_list
 
 
@@ -164,14 +165,22 @@ def smallest_int(number_list):
         True
 
     """
-    x = 100000000000 #set initial condition to a huge number, so we can compare
-    for number in number_list: #Issue:  it is not taking into account if the list is empty... 
-        number = float(number)
-        if number < x:
-            x = number
 
-    return x
+    # # option A:
+    # for num1 in number_list:
+    #     for num2 in number_list:
 
+    #         if num2 < num1:
+    #             return num2
+
+    # option B:
+
+    smallest = None
+
+    for num in number_list:
+        if smallest is None or num < smallest:
+            smallest = num
+    return smallest
 
 
 def largest_int(number_list):
@@ -192,19 +201,12 @@ def largest_int(number_list):
 
     """
 
-#Note same problem as largest_int function. 
-    x = -100000000000
-    for number in number_list:
-        number = float(number)
-        if len(number_list) == 0:
-            x = None
-        elif len(number_list) > 0:
-            number > x
-            x = number
+    largest = None
 
-    return x
-
-
+    for num in number_list:
+        if largest is None or num > largest:
+            largest = num
+    return largest
 
 def halvesies(number_list):
     """Return list of numbers from input list, each divided by two.
@@ -222,7 +224,7 @@ def halvesies(number_list):
     #Create an empty list
     for item in number_list:
         item = float(item)
-        #type cast all items into a float
+        # type cast all items into a float
         halvesies = item/2
         # divide each item by 2, them append it to the halvesies_list empty list.
         halvesies_list.append(halvesies)
@@ -236,11 +238,11 @@ def word_lengths(word_list):
         [5, 3, 5, 4]
 
     """
-    word_lengths_list = [] #Create an empty list
+    word_lengths_list = []  # Create an empty list
     for item in word_list:
-        item = str(item) #type cast each item on the list into a str
-        item_length = len(item) #find the length of each str (len() built-in fn only works with str)
-        word_lengths_list.append(item_length) # add each length value to the empty list.
+        item = str(item)  # type cast each item on the list into a str
+        item_length = len(item)  # find the length of each str (len() built-in fn only works with str)
+        word_lengths_list.append(item_length)  # add each length value to the empty list.
     return word_lengths_list
 
 
@@ -259,10 +261,10 @@ def sum_numbers(number_list):
         0
 
     """
-    total = 0 #set the initial conditions, so total is 0
+    total = 0  # set the initial conditions, so total is 0
     for item in number_list:
-        item = int(item) #tycast all numbers to float in case there is an int or str.
-        total += item # this means total = total + item
+        item = int(item)  # tycast all numbers to float in case there is an int or str.
+        total += item  # this means total = total + item
 
     return total
 
@@ -285,14 +287,14 @@ def mult_numbers(number_list):
         1
 
     """
-    total = 1 # set initial conditions to 1 because if set to 0, total will be always 0.
+    total = 1  # set initial conditions to 1 because if set to 0, total will be always 0.
 
     for item in number_list:
-        try: # check if all items in the list are numbers. 
-            item = float(item) #tycast all numbers to float in case there is an int or str.
-            total = total * item # means: total = the previous total multiply by the next item on the list. 
+        try:  # check if all items in the list are numbers.
+            item = int(item)  # tycast all numbers to float in case there is an int or str.
+            total = total * item  # means: total = the previous total multiply by the next item on the list.
         except ValueError:
-            print "Oops! %s is not a number..." %item
+            print "Oops! %s is not a number..." % item
 
     return total
 
@@ -313,10 +315,10 @@ def join_strings(word_list):
 
     """
 
-    joined_string_results = "" # initials conditions: empty str.
+    joined_string_results = ""  # initials conditions: empty str.
     for string in word_list:
-        string = str(string) # type cast string in word_list to a str. 
-        joined_string_results = joined_string_results + string #means: joined_string_results = concatinate previous joined_string_results with the next string. 
+        string = str(string)  # type cast string in word_list to a str.
+        joined_string_results = joined_string_results + string  # means: joined_string_results = concatinate previous joined_string_results with the next string.
     return joined_string_results
 
 
@@ -330,14 +332,14 @@ def average(number_list):
     this raises an error when given an empty list.
     """
 
-    total = 0 #set initial conditions starting from 0
+    total = 0  # set initial conditions starting from 0
     for number in number_list:
-        try: #check that all items in the list are numbers
-            number = float(number) #type cast the number into a float
-            total += number #means: total = previous total + the next number int he list. 
-            average = total/ len(number_list) # the built-in fn. len() counts the total number of items in a list. 
+        try:  # check that all items in the list are numbers
+            number = float(number)  # type cast the number into a float
+            total += number  # means: total = previous total + the next number int he list.
+            average = total / len(number_list)  # the built-in fn. len() counts the total number of items in a list.
         except ValueError:
-            print "Oops! %s number is not a number..." %number
+            print "Oops! %s number is not a number..." % number
     return average
 
 
@@ -358,13 +360,12 @@ def join_strings_with_comma(list_of_words):
 
     for string in list_of_words:
         string = str(string)
-        if len(list_of_words) == 1: #if there is only one item in the list return only the that item. 
+        if len(list_of_words) == 1:  # if there is only one item in the list return only the that item.
             joined_string_results = string + ", "
         else:
             joined_string_results = joined_string_results + string + ", "
 
-
-    return joined_string_results[:-2] # A whole set of string is returned ei. "hello, bacon, cake, case, " To get rid of the extra "," and " " at the end of the string. It has been asked to return from the beginning of the string until [-3]. NOTE: [-2]is not included, it is where it stops returning. 
+    return joined_string_results[:-2]  # A whole set of string is returned ei. "hello, bacon, cake, case, " To get rid of the extra "," and " " at the end of the string. It has been asked to return from the beginning of the string until [-3]. NOTE: [-2]is not included, it is where it stops returning.
 
 
 def foods_in_common(foods1, foods2):
@@ -383,16 +384,15 @@ def foods_in_common(foods1, foods2):
     set([])
 
     """
-    # for every food that is in the foods1list, check if that food item is in the food2 list. 
-    common_list = []
-    for food in foods1:
-        if food == food in foods2: 
-            common_list.append(food)
 
-    return common_list
+    in_common = []
 
+    for food1 in foods1:
+        for food2 in foods2:
+            if food2 in food1:
+                in_common.append(food2)
 
-
+    return set(in_common)
 
 
 def reverse_list(my_list):
@@ -413,7 +413,7 @@ def reverse_list(my_list):
 
 def reverse_list_in_place(my_list):
     """Return the inputted list reversed--WITHOUT creating a new list.
-       This will involve moving the items in my_list to different positions 
+       This will involve moving the items in my_list to different positions
        in the same list.
 
        Do not use the python methed reverse()/reversed()
@@ -431,7 +431,7 @@ def reverse_list_in_place(my_list):
 
 
 def duplicates(my_list):
-    """Return a list of words which are duplicated in the input list. 
+    """Return a list of words which are duplicated in the input list.
        The returned list should be in ascending order.
 
     >>> duplicates(["apple", "apple", "banana", "cherry", "banana", "apple"])
@@ -442,12 +442,16 @@ def duplicates(my_list):
 
 
     """
-    duplicate_list = []
-    for item in my_list:
-        if item == item:
-            duplicate_list.append(item)
+    # duplicates = []
+    # for item1 in my_list:
+    #     for item2 in my_list:
+    #         if item2 not in duplicates & in item1:
+    #             duplicates.append(item2)
 
-    return duplicate_list
+
+    # return duplicates
+
+    pass
 
 
 def find_letter_indices(list_of_words, letter):
@@ -468,20 +472,23 @@ def find_letter_indices(list_of_words, letter):
     """
 
     #How to find out the index location of a letter in a string?
-    index_list =[]
-    for item in list_of_words:
-        if letter in item:
-            letter_index = letter[]
-            index_list,append(letter_index)
-    return index_list
 
+    # index_list = []
+
+    # for word in list_of_words:
+    #     if letter in word:
+    #         index_list.append(word[letter])
+
+    # return index_list
+
+    pass
 
 
 def largest_n_items(input_list, n):
-    """Given a list of integers along with an integer n, return a 
-    list of the largest n numbers in the input list in ascending order. 
+    """Given a list of integers along with an integer n, return a
+    list of the largest n numbers in the input list in ascending order.
 
-    You can assume that n will be less than the length of the list. 
+    You can assume that n will be less than the length of the list.
 
     For example:
 
@@ -490,12 +497,12 @@ def largest_n_items(input_list, n):
 
     """
 
-    largest_numbers = []
-    x = int(n+1)
-    input_list.sort()
-    largest_numbers.extend(input_list[-1:-x])
+    input_list = sorted(input_list)
 
-    return largest_numbers
+    if n == 0:
+        return []
+    else:
+        return input_list[-n:]
 
 
 ##############################################################################
